@@ -1,0 +1,11 @@
+{
+  "name": "chatbot-video-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:nbond211/chatbot-video-generator.git",
+  "author": "Nick Bond <bond.n@husky.neu.edu>",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^5.0.0"
+  }
+}
