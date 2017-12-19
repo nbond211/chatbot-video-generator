@@ -1,0 +1,1 @@
+import assignVoices from 'assign-voices';
