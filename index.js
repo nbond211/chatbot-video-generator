@@ -1,7 +1,5 @@
-import chooseConversation from './modules/speech/choose-conversation';
+import speech from './modules/speech/speech';
 
 export default async function() {
-    const conversation = await chooseConversation();
-
-    console.log(conversation);
+    await speech();
 }
