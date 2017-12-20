@@ -1,9 +1,0 @@
-file 'job/images/one.jpg'
-duration 0.877
-file 'job/images/two.jpg'
-duration 0.648
-file 'job/images/one.jpg'
-duration 3.222
-file 'job/images/two.jpg'
-duration 2.76
-file 'job/images/two.jpg'

@@ -5,5 +5,5 @@ import video from './modules/video/video';
 export default async function() {
     const conversation = await speech();
     await images(conversation);
-    await video();
+    await video(conversation);
 }

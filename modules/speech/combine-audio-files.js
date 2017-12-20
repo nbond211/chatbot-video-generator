@@ -1,14 +1,15 @@
 import audioconcat from 'audioconcat';
 import fs from 'fs-extra';
 
-async function getAudioFiles() {
-    const files = await fs.readdir('job/audio');
-    const filteredFiles = files.filter(filename => filename.includes('.mp3'));
-    return filteredFiles.map(filename => `job/audio/${filename}`);
+async function getAudioFiles(conversation) {
+    return conversation.map((line, index) => {
+       return `job/audio/${index}.mp3`;
+    });
 }
 
-export default async function() {
-    const audioFiles = await getAudioFiles();
+export default async function(conversation) {
+    const audioFiles = await getAudioFiles(conversation);
+    console.log(audioFiles);
 
     await audioconcat(audioFiles)
         .concat('job/audio/conversation.mp3')
