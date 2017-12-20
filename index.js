@@ -4,9 +4,13 @@ import video from './modules/video/video';
 import clean from './modules/clean/clean';
 
 export default async function() {
-    const conversation = await speech();
-    await images(conversation);
-    await video(conversation);
-    await clean();
+    try {
+        const conversation = await speech();
+        await images(conversation);
+        await video(conversation);
+        await clean();
+    } catch (error) {
+        await clean();
+    }
     console.log('done :)');
 }
