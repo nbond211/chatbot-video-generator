@@ -3,8 +3,7 @@ import { promisify } from 'util';
 import cmd from 'node-cmd'
 const getAsync = promisify(cmd.get);
 const arrayToTextFile = promisify(require('array-to-txt-file'));
-import fs from 'fs-extra';
-import bbPromise from 'bluebird';
+import shortId from 'short-id';
 
 async function getSpeechDuration(index) {
     const path = `job/audio/${index}.mp3`;
@@ -22,12 +21,6 @@ async function writeTextFile(durations) {
        return `file 'images/frames/${index}.jpg'\nduration ${duration}`;
     });
     await arrayToTextFile(inputData, 'job/input.txt');
-
-    // await Promise.all(durations.map(async (duration, index) => {
-    //
-    //     await fs.appendFile('job/input.txt', '\n' + `file 'images/frames/${index}.jpg'`);
-    //     await fs.appendFile('job/input.txt', `\n duration ${duration}`);
-    // }));
 }
 
 async function generateImagesArray(conversation) {
@@ -48,5 +41,5 @@ async function generateImagesArray(conversation) {
 export default async function(conversation) {
     const durations = await getSpeechDurations(conversation);
     await writeTextFile(durations);
-    await getAsync('ffmpeg -f concat -i job/input.txt -i job/audio/conversation.mp3 output/output.mp4');
+    await getAsync(`ffmpeg -f concat -i job/input.txt -i job/audio/conversation.mp3 output/${shortId.generate()}.mp4`);
 }
